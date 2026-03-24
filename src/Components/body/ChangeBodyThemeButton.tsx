@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode, useContext } from "react";
-import { ThemeProvider } from "../../Provider/ContextProvider";
+import { ThemeProvider } from "../../Context/ContextProvider";
 import { stylesForMenuLinks } from "../../Styles/styles";
 
 type ChangeBodyThemeProps = {
