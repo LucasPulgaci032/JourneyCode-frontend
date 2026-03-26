@@ -5,9 +5,10 @@ import { RoadmapCards } from "./InitialComponents/RoadmapCards";
 import { InitialCard } from "../InitialCardPage/card";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
+import { useAppContext } from "../../Context/ContextProvider";
 
 export default function StartComponents() {
-
+  const {color} = useAppContext()
   const [userName, setUserName] = useState("")
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function StartComponents() {
 
 
   return (
-    <div className={`flex flex-col mb-10 gap-10 text-center `}>
+    <div className={`flex flex-col mb-10 gap-10 text-center w-full`}>
       <header
         className="flex flex-col 
             h-1/2
@@ -41,7 +42,7 @@ export default function StartComponents() {
             p-4
             "
       >
-        <Title className="text-[--font-color-title] font-[Orbitron] font-bold tracking-widest self-center text-[40px] max-w-[80%]">
+        <Title className="text-[--font-color-title] font-[Orbitron] font-bold tracking-widest self-center text-4xl max-w-[80%]">
           JourneyCode
         </Title>  
       </header>
@@ -56,7 +57,9 @@ export default function StartComponents() {
         <LinesHTU>Siga o roadmap</LinesHTU>
         <LinesHTU>Perceba sua evolução.</LinesHTU>
       </HowToUse>
+      <section className={`w-full p-10 ${color ? "bg-blue-400" : "bg-blue-700"}`}>
       <InitialCard />
+      </section>
       <Description>
         Escolha a linguagem e siga seu roadmap de estudos passo a passo.
       </Description>
