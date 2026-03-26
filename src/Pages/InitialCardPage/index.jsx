@@ -1,55 +1,16 @@
-import { LangsContainer } from "../../RoadmapComponents/Container/index.jsx";
+import { LangsContainer } from "../RoadmapLangPages/RoadmapComponents/Container/index.jsx";
 import {
   LangDescription,
   TopicsTitle,
-} from "../../RoadmapComponents/exports.js";
-import { LangTitle } from "../../RoadmapComponents/LangTitle/index.jsx";
-import {
-  arrayCode,
-  arrayDescription,
-  arrayThirdContent,
-  dataTypes,
-  dataTypesCode,
-  inicialDescription,
-  logicAndAlgoritms,
-  loopings,
-  loopingsCode,
-  operators,
-  operatorsCode,
-  varAndConstCode,
-  varAndConsts,
-  conditionalDescription,
-  conditionalCode,
-  functionDescription,
-  functionCode,
-} from "./text.ts";
+} from "../RoadmapLangPages/RoadmapComponents/exports.js";
+import { LangTitle } from "../RoadmapLangPages/RoadmapComponents/LangTitle/index.jsx";
+
 import ReactMarkdown from "react-markdown";
 import { ToggleSectionCode } from "../../Components/ToggleSectionCode/ToggleSectionCode.jsx";
-import { SectionCode } from "../../RoadmapComponents/SectionCode/SectionCode.jsx";
+import { SectionCode } from "../RoadmapLangPages/RoadmapComponents/SectionCode/SectionCode.jsx";
+import { initialContent } from "./initialContent.js";
+import { inicialDescription, logicAndAlgoritms } from "./text.js";
 
-const initialContent = [
-  {
-    Variáveis: [varAndConsts, varAndConstCode],
-  },
-  {
-    Tipagem: [dataTypes, dataTypesCode],
-  },
-  {
-    Operadores: [operators, operatorsCode],
-  },
-  {
-    Listas: [arrayDescription, arrayCode, arrayThirdContent],
-  },
-  {
-    "Laços de repetição": [loopings, loopingsCode],
-  },
-  {
-    "Estruturas de decisão": [conditionalDescription, conditionalCode],
-  },
-  {
-    Funções: [functionDescription, functionCode],
-  },
-];
 
 export function InitialCardPage() {
   return (
