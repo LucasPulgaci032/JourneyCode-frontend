@@ -1,20 +1,23 @@
-import { useContext, useState } from "react";
+import {useState } from "react";
 import { ButtonLogin } from "./LoginComponents/ButtonLogin";
 import { FormLogin } from "./LoginComponents/FormLogin";
 import { Header } from "./LoginComponents/Header";
 import { InputLogin } from "./LoginComponents/InputLogin";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ThemeProvider } from "../../Provider/ContextProvider";
 import { WarningModal } from "./LoginComponents/WarningModal";
+import { useAppContext } from "../../Context/ContextProvider";
+import { Form } from "./LoginComponents/Form";
+import { LangTopics } from "../RoadmapLangPages/RoadmapComponents/exports";
+import { LangsCarrousel } from "./LoginComponents/LangsCarrousel";
 
 export function LoginPage() {
-  const { email, setEmail, password, setPassword, modal, setModal } =
-    useContext(ThemeProvider);
-
+  const { password, setPassword, modal, setModal, setToken } = useAppContext()
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
-
+  
   const sendLogin = async (event) => {
+
     event.preventDefault();
     try {
       const res = await axios.post(`http://localhost:3000/users/login`, {
@@ -24,9 +27,13 @@ export function LoginPage() {
       if (res.status === 200) {
         const token = res.data.token;
 
-        localStorage.setItem("token", token);
-
-        navigate("/roadmaps");
+        
+          localStorage.setItem("token", token)
+          setToken(token)
+          navigate("/roadmaps");
+        
+        
+        
       }
     } catch (error) {
       setModal(error.response.data.message);
@@ -34,9 +41,10 @@ export function LoginPage() {
   };
 
   return (
-    <section className="flex flex-col text-center gap-10 p-20 ">
+   <Form>
+     <LangsCarrousel/>
       <FormLogin onSubmit={sendLogin}>
-        <Header />
+        <Header/>
         <InputLogin
           type="text"
           placeholder="insira seu email"
@@ -55,10 +63,11 @@ export function LoginPage() {
           Não tem cadastro? inscreva-se
         </Link>
       </FormLogin>
+      <LangsCarrousel/>
       {modal && (
         <WarningModal onClose={() => setModal(null)}>{modal}</WarningModal>
       )}
-    </section>
+    </Form>
   );
 }
 

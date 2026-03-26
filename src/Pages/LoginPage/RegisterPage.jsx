@@ -1,15 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FormLogin } from "./LoginComponents/FormLogin";
 import { Header } from "./LoginComponents/Header";
 import { InputLogin } from "./LoginComponents/InputLogin";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ThemeProvider } from "../../Provider/ContextProvider";
 import { WarningModal } from "./LoginComponents/WarningModal";
+import { useAppContext } from "../../Context/ContextProvider";
+import { LangsCarrousel } from "./LoginComponents/LangsCarrousel";
+import { Form } from "./LoginComponents/Form";
 
 export function RegisterPage() {
-  const { modal, setModal } = useContext(ThemeProvider);
+  const { modal, setModal, setToken } = useAppContext()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,13 +21,14 @@ export function RegisterPage() {
     e.preventDefault();
   
     try {
-      await axios.post(`http://localhost:3000/users/register`, {
+     const response = await axios.post(`http://localhost:3000/users/register`, {
         name,
         email,
         password,
       });
+      const token = response.data.token
         localStorage.setItem("token", token);
-       
+        setToken(token)
       navigate("/roadmaps");
     } catch (error) {
       setModal(error.response.data.message);
@@ -33,7 +36,8 @@ export function RegisterPage() {
   };
 
   return (
-    <section className="flex flex-col text-center gap-10 p-20 ">
+    <Form>
+      <LangsCarrousel/>
       <FormLogin onSubmit={register}>
         <Header />
         <InputLogin
@@ -58,21 +62,22 @@ export function RegisterPage() {
         />
 
         <button
-          className="self-start font-bold hover:scale-110 transition-transform duration-200"
+          className="self-start font-bold text-blue-300 hover:scale-110 transition-transform duration-200"
           type="submit"
         >
           Cadastrar
         </button>
         <Link
-          className="self-start font-bold hover:scale-110 transition-transform duration-200"
+          className="self-start font-bold  text-blue-300 hover:scale-110 transition-transform duration-200"
           to={"/"}
         >
           Já possui cadastro ? Login
         </Link>
       </FormLogin>
+      <LangsCarrousel/>
       {modal && (
         <WarningModal onClose={() => setModal(null)}>{modal}</WarningModal>
       )}
-    </section>
+    </Form>
   );
 }
