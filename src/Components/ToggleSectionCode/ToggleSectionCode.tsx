@@ -1,12 +1,13 @@
-import { ButtonHTMLAttributes, useContext } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "../../Icons/exportIcons.js";
-import { ThemeProvider } from "../../Context/ContextProvider.jsx";
+import { useAppContext } from "../../Context/ContextProvider.jsx";
 import ReactMarkdown from "react-markdown";
 
 
 
 type CodeProps = {
   code : string,
+  idx: number
   
 }
 
@@ -14,34 +15,34 @@ type ToggleArrowProps = {
   isOpen?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export function ToggleSectionCode({ code } : CodeProps) {
+export function ToggleSectionCode({ code, idx } : CodeProps) {
   return (
-    <section className="flex flex-col gap-4 w-full max-w-md ">
+    <section className="flex flex-col gap-4 w-full max-w-md justify-center ">
   
      
-      {code == null ? <h1>null</h1> : <ToggleSection code={code} />}
+      {code == null ? <h1>null</h1> : <ToggleSection code={code} idx={idx} />}
     </section>
   );
 }
 
-export function ToggleSection({ code } : CodeProps) {
-  const { toggleSection, hiddenSection } = useContext(ThemeProvider);
+export function ToggleSection({ code, idx } : CodeProps) {
+  const { toggleSection, hiddenSection } = useAppContext()
 
   if (code.length >= 500) {
     return (
-      <>
+      <section className="flex flex-col w-full gap-10  ">
         <ToggleArrow 
-          onClick={() => toggleSection(code)}
-          isOpen={hiddenSection === code}
+          onClick={() => toggleSection(idx)}
+          isOpen={hiddenSection === idx}
         />
-        {hiddenSection === code && <ReactMarkdown>{code}</ReactMarkdown>}
-      </>
+        {hiddenSection === idx && <ReactMarkdown>{code}</ReactMarkdown>}
+      </section>
     );
   }
   return (
-    <>
+    <section className="flex flex-col w-full gap-10">
       <ReactMarkdown>{code}</ReactMarkdown>
-    </>
+    </section>
   );
 }
 

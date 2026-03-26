@@ -1,14 +1,14 @@
 import axios from "axios";
-import { useState , useEffect, useContext} from "react";
+import { useState , useEffect} from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegCircle } from "react-icons/fa"
-import { ThemeProvider } from "../../Context/ContextProvider";
+import { useAppContext } from "../../Context/ContextProvider";
 
 
 export function TopicCompleted({topicId, roadmapId, initialValue}) {
  
  
-  const {color, token}  = useContext(ThemeProvider)
+  const {color, token}  = useAppContext()
 
   const [completed, setCompleted] = useState(initialValue);
 

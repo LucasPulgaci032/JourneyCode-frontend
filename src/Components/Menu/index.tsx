@@ -1,10 +1,10 @@
-import { ButtonHTMLAttributes, useContext } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import ChangeBodyTheme from "../body/ChangeBodyThemeButton";
 import { stylesForMenuLinks } from "../../Styles/styles";
 import { useLocation , useNavigate} from "react-router-dom";
-import { ThemeProvider } from "../../Context/ContextProvider";
+import { useAppContext } from "../../Context/ContextProvider";
 
 
 type Url = {
@@ -22,7 +22,7 @@ type BtnProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function BtnMenu({ onClick} : BtnProps ){
   const locationButton  = useLocation();
-  const {color} = useContext(ThemeProvider)
+  const {color} = useAppContext()
 
   return (
     <button

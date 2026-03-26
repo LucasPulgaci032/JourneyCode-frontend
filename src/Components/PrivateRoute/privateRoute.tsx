@@ -1,11 +1,11 @@
-import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { ThemeProvider } from "../../Context/ContextProvider";
+import { useAppContext } from "../../Context/ContextProvider";
+
 
 
 export const PrivateRoute = () => {
     
-    const {token} = useContext(ThemeProvider)
+    const {token} = useAppContext()
    
 
     return token ? <Outlet/> : <Navigate to = '/'/>
