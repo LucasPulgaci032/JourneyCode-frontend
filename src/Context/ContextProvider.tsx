@@ -51,14 +51,8 @@ export function useAppContext() {
 
 export function AppProvider({ children }) {
    const [token,setToken] = useState(() => localStorage.getItem("token"));
-  const userData = token ? jwtDecode<JwtPayload>(token) : null;
 
-  const [color, setColor] = useState<boolean>(() => {
-    const stored = localStorage.getItem("color");
-    if (stored !== null) return stored === "true";
-    if (userData?.theme !== undefined) return userData.theme;
-    return false;
-  });
+  const [color, setColor] = useState<boolean>(false);
 
   const [menu, setMenu] = useState(false);
   const [hiddenSection, setHiddenSection] = useState<number | null>(null);
@@ -75,7 +69,7 @@ export function AppProvider({ children }) {
     const newColor = !color;
     try {
       await axios.patch(
-        "http://192.168.0.200:3000/users/changeTheme",
+        "https://journeycode-api-production.up.railway.app/users/changeTheme",
         { theme: newColor },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -85,6 +79,26 @@ export function AppProvider({ children }) {
       console.error(error);
     }
   }
+
+  useEffect(() => {
+    async function fetchUserTheme(){
+      if(!token) return
+      const user : JwtPayload = jwtDecode(token)
+      const id  = user.id
+     
+      try{
+        const res = await axios.get(`https://journeycode-api-production.up.railway.app/users/${id}`,
+          { headers: { Authorization: `Bearer ${token}` }}
+        )
+        const theme = res.data.theme
+        setColor(theme)
+        localStorage.setItem("color", JSON.stringify(theme));
+      }catch(err){
+        console.log(err)
+      }
+    }
+    fetchUserTheme()
+  },[token])
 
   function toggleMenu() {
     setMenu((prev) => !prev);
