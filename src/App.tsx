@@ -33,7 +33,7 @@ function App() {
             <Route path="/roadmaps" element={<StartComponents />} />
             <Route path="/meusroadmaps" element={<MyRoadmapsPage />} />
             <Route path="/LogicaBasica" element={<InitialCardPage />} />
-            <Route path="roadmaps/:name" element={<RoadmapGeneric />} />
+            <Route path="/roadmaps/:name" element={<RoadmapGeneric />} />
 
         </Route>
       
