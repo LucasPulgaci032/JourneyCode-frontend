@@ -8,6 +8,7 @@ export function useRoadmapData(name) {
     data: null,
     topics: [],
     progress: [],
+    code : null
   });
 
   useEffect(() => {
@@ -22,18 +23,22 @@ export function useRoadmapData(name) {
           `http://localhost:3000/newTopics/roadmap?roadmapName=${name}`
         );
         const topicData = await resTopic.json();
-
+       
+        const resCode = await axios.get(`http://localhost:3000/codetopics/${roadmapData._id}`)
+       
         const token = localStorage.getItem("token");
         const resProgress = await axios.get(
           `http://localhost:3000/userProgress/roadmap/${roadmapData._id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
+
         setState({
           status: "success",
           data: roadmapData,
           topics: topicData,
           progress: resProgress.data,
+          code: resCode.data
         });
       } catch (err) {
         setState({
@@ -42,6 +47,7 @@ export function useRoadmapData(name) {
           error: err,
           topics: null,
           progress: null,
+          code: null
         });
       }
     }
