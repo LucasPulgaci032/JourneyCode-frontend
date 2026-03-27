@@ -15,6 +15,7 @@ type ToggleArrowProps = {
   isOpen?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
+
 export function ToggleSectionCode({ code, idx } : CodeProps) {
   return (
     <section className="flex flex-col gap-4 w-full max-w-md justify-center ">

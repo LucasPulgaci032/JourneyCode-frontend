@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
-      "noUnusedLocals": true,
+    "noUnusedLocals": true,
     "noUnusedParameters": true
   },
   "include": ["src"]
