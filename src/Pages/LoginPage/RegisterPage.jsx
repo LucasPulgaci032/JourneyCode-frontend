@@ -62,7 +62,7 @@ export function RegisterPage() {
         />
 
         <button
-          className="self-start font-bold text-blue-300 hover:scale-110 transition-transform duration-200"
+          className="self-center font-bold text-blue-300 hover:scale-110 transition-transform duration-200"
           type="submit"
         >
           Cadastrar
