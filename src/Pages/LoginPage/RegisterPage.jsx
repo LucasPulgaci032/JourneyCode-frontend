@@ -21,7 +21,7 @@ export function RegisterPage() {
     e.preventDefault();
   
     try {
-     const response = await axios.post(`http://localhost:3000/users/register`, {
+     const response = await axios.post(`https://journeycode-api-production.up.railway.app/users/register`, {
         name,
         email,
         password,

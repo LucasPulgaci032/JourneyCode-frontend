@@ -27,7 +27,7 @@ export function TopicCompleted({topicId, roadmapId, initialValue}) {
 
   try {
     const res = await axios.patch(
-      `http://192.168.0.200:3000/userProgress`,
+      `https://journeycode-api-production.up.railway.app/userProgress`,
       { roadmap: roadmapId, topic: topicId, isCompleted: newValue },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -38,7 +38,7 @@ export function TopicCompleted({topicId, roadmapId, initialValue}) {
 
     if (updatedCompleted) {
     await axios.patch(
-    `http://192.168.0.200:3000/users/saveRoadmap`,
+    `https://journeycode-api-production.up.railway.app/users/saveRoadmap`,
     { roadmapId },
     { headers: { Authorization: `Bearer ${token}` } }
   );

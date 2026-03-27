@@ -35,14 +35,14 @@ export default function StartComponents() {
             h-1/2
             gap-4 
             bg-gradient-to-r from-blue-200 to-blue-900
-            m-10
+            
             rounded-md
             animate-glow
             min-w-[90%]
             p-4
             "
       >
-        <Title className="text-[--font-color-title] font-[Orbitron] font-bold tracking-widest self-center text-4xl max-w-[80%]">
+        <Title className="text-[--font-color-title] font-[Orbitron] font-bold tracking-widest self-center text-3xl">
           JourneyCode
         </Title>  
       </header>

@@ -20,13 +20,12 @@ export function LoginPage() {
 
     event.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:3000/users/login`, {
+      const res = await axios.post(`https://journeycode-api-production.up.railway.app/users/login`, {
         email,
         password,
       });
       if (res.status === 200) {
         const token = res.data.token;
-
         
           localStorage.setItem("token", token)
           setToken(token)
@@ -58,8 +57,8 @@ export function LoginPage() {
           onChange={(p) => setPassword(p.target.value)}
         />
 
-        <ButtonLogin type="submit" className='self-start font-bold text-blue-300 hover:scale-110 transition-transform duration-200'>Fazer Login</ButtonLogin>
-        <Link className="self-start font-bold text-blue-300 hover:transition-transform duration-200" to={"/register"}>
+        <ButtonLogin type="submit" className='self-center font-bold text-blue-300 hover:scale-110 transition-transform duration-200'>Fazer Login</ButtonLogin>
+        <Link className="self-center font-bold text-blue-300 hover:transition-transform duration-200" to={"/register"}>
           Não tem cadastro? inscreva-se
         </Link>
       </FormLogin>
