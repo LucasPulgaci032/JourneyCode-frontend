@@ -73,11 +73,7 @@ export function RoadmapGeneric() {
         >
           <TopicsTitle>{topicName[idx]}</TopicsTitle>
          
-          <TopicCompleted   //botão que recebe via props id de topico, id de roadmap e valor do progresso (concluído ou não)
-          topicId={topicItem._id}    
-           roadmapId={topicItem.roadmap._id}
-          initialValue={topicProgress}
-          />
+         
           
              <LangTopics>{topicItem.content}</LangTopics>
 
@@ -87,6 +83,14 @@ export function RoadmapGeneric() {
                 <ToggleSectionCode code={item.code} idx={idx}/>
              </SectionCode>
              ))}
+            <section className="flex flex-row justify-between bg-blue-100 p-2"> 
+              <p className="text-xl mt-1 text-blue-800">Concluir tópico</p>
+              <TopicCompleted   //botão que recebe via props id de topico, id de roadmap e valor do progresso (concluído ou não)
+          topicId={topicItem._id}    
+           roadmapId={topicItem.roadmap._id}
+          initialValue={topicProgress}
+          />
+          </section>
         </div>
       )
      })
