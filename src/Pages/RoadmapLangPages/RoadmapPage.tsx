@@ -6,26 +6,27 @@ import {
   LangDescription,
   LangTopics,
   TopicsTitle,
-} from "../../RoadmapComponents/exports.js";
+} from "./RoadmapComponents/exports.js";
 import ReactMarkdown from "react-markdown";
-import { roadmapContent } from "./roadmapContent.ts";
 import { classJava } from "./StaticCodeContent/JavaCodeContent.ts";
-import { SectionCode } from "../../RoadmapComponents/SectionCode/SectionCode.jsx";
-import { ToggleSectionCode } from "../../Components/ToggleSectionCode/ToggleSectionCode.jsx";
-import { TopicCompleted } from "../../Components/TopicCompleted/index.jsx";
+import { SectionCode } from "./RoadmapComponents/SectionCode/SectionCode.jsx";
+import { ToggleSectionCode } from "../../Components/ToggleSectionCode/ToggleSectionCode.js";
+import { TopicCompleted } from "../../Components/TopicCompleted/index";
 import { useRoadmapData } from "../../hooks/useRoadmapData.js";
 
 
 export function RoadmapGeneric() {
   const { name } = useParams();
 
-  const {renderData, 
-        renderTopic,   
-        progress,
-        loading,
-        error} = useRoadmapData(name)
+  const { 
+    status,
+    error,
+    data,
+    topics,
+    progress,
+    code} = useRoadmapData(name)
   
-  if (loading)
+  if (status === "loading")
     return <p className="text-4xl text-center mt-[10%]">carregando...</p>;
   if (error) return <p className="text-4xl text-center mt-[10%]">erro</p>;
 
@@ -41,19 +42,13 @@ export function RoadmapGeneric() {
     name === "Java" ? "Classes e métodos" : "Funções",
   ];
 
-
-
-  const codes = roadmapContent.find(param => param.language === name)
-  const codesContent = Object.keys(codes).filter(key => key !== 'language').map(key => codes[key].code)
-
-
  
-  if (!renderData) return <p>Item não encontrado</p>;
+  if (!data) return <p>Item não encontrado</p>;
 
   return (
     <LangsContainer>
-      <LangTitle>{renderData.name}</LangTitle>
-      <LangDescription>{renderData.description}</LangDescription>
+      <LangTitle>{data.name}</LangTitle>
+      <LangDescription>{data.description}</LangDescription>
       {javaClass ? (
         <SectionCode>
           <ReactMarkdown>{javaClass}</ReactMarkdown>
@@ -61,9 +56,13 @@ export function RoadmapGeneric() {
       ) : null}
 
      {
-     renderTopic.map((topicItem,idx) => {
-      
-  
+
+ 
+
+     topics.map((topicItem,idx) => {
+    
+       const codes = code.filter(item => item.topic.toString() === topicItem._id.toString()) //responsavel por relacionar topico e codigo dentro do map por id de topico
+       
       if (!topicItem) return null;
        const topicProgress = progress.find(p => p.topic === topicItem._id)?.isCompleted || false;
       return(
@@ -81,10 +80,13 @@ export function RoadmapGeneric() {
           />
           
              <LangTopics>{topicItem.content}</LangTopics>
-             <SectionCode>
+
+             {codes.map((item) => (
+             <SectionCode key={topicItem._id}>
                 {topicName[idx]}
-                <ToggleSectionCode code={codesContent[idx]}/>
+                <ToggleSectionCode code={item.code} idx={idx}/>
              </SectionCode>
+             ))}
         </div>
       )
      })

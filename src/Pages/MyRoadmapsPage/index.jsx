@@ -6,7 +6,7 @@ import { Card } from "../../Components/Card/Card";
 import { Link } from "react-router-dom";
 import {styleForRoadmapCardsLink } from "../../Styles/styles"
 import Title from "../../Components/Title";
-import { LangTitle } from "../../RoadmapComponents/LangTitle";
+import { LangTitle } from "../RoadmapLangPages/RoadmapComponents/LangTitle";
 
 export function MyRoadmapsPage() {
   const[roadmaps, setRoadmaps] = useState([])
