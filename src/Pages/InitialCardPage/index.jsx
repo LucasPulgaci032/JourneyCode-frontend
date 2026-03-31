@@ -6,10 +6,11 @@ import {
 import { LangTitle } from "../RoadmapLangPages/RoadmapComponents/LangTitle/index.jsx";
 
 import ReactMarkdown from "react-markdown";
-import { ToggleSectionCode } from "../../Components/ToggleSectionCode/ToggleSectionCode.jsx";
+import { ToggleSection, ToggleSectionCode } from "../../Components/ToggleSectionCode/ToggleSectionCode.jsx";
 import { SectionCode } from "../RoadmapLangPages/RoadmapComponents/SectionCode/SectionCode.jsx";
 import { initialContent } from "./initialContent.js";
 import { inicialDescription, logicAndAlgoritms } from "./text.js";
+import { useAppContext } from "../../Context/ContextProvider.js";
 
 
 export function InitialCardPage() {
@@ -37,7 +38,7 @@ export function InitialCardPage() {
             )}
             <SectionCode>
               <LangDescription>{Object.keys(item)}</LangDescription>
-              <ToggleSectionCode code={code} />
+              <ToggleSectionCode code={code} idx={idx} />
             </SectionCode>
           </div>
         );
