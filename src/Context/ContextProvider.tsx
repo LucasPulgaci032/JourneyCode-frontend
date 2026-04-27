@@ -69,7 +69,7 @@ export function AppProvider({ children }) {
     const newColor = !color;
     try {
       await axios.patch(
-        "https://journeycode-api-production.up.railway.app/users/changeTheme",
+        "https://journeycode-api.onrender.com/users/changeTheme",
         { theme: newColor },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -87,7 +87,7 @@ export function AppProvider({ children }) {
       const id  = user.id
      
       try{
-        const res = await axios.get(`https://journeycode-api-production.up.railway.app/users/${id}`,
+        const res = await axios.get(`https://journeycode-api.onrender.com/users/${id}`,
           { headers: { Authorization: `Bearer ${token}` }}
         )
         const theme = res.data.theme

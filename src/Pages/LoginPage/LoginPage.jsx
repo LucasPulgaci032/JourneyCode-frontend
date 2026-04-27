@@ -20,7 +20,7 @@ export function LoginPage() {
 
     event.preventDefault();
     try {
-      const res = await axios.post(`https://journeycode-api-production.up.railway.app/users/login`, {
+      const res = await axios.post(`https://journeycode-api.onrender.com/users/login`, {
         email,
         password,
       });

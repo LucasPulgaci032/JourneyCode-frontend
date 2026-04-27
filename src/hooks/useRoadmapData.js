@@ -15,20 +15,20 @@ export function useRoadmapData(name) {
     async function fetchLang() {
       try {
         const resRoadmap = await fetch(
-          `https://journeycode-api-production.up.railway.app/roadmaps/lang?name=${name}`
+          `https://journeycode-api.onrender.com/roadmaps/lang?name=${name}`
         );
         const roadmapData = await resRoadmap.json();
 
         const resTopic = await fetch(
-          `https://journeycode-api-production.up.railway.app/newTopics/roadmap?roadmapName=${name}`
+          `https://journeycode-api.onrender.com/newTopics/roadmap?roadmapName=${name}`
         );
         const topicData = await resTopic.json();
        
-        const resCode = await axios.get(`https://journeycode-api-production.up.railway.app/codetopics/${roadmapData._id}`)
+        const resCode = await axios.get(`https://journeycode-api.onrender.com/codetopics/${roadmapData._id}`)
        
         const token = localStorage.getItem("token");
         const resProgress = await axios.get(
-          `https://journeycode-api-production.up.railway.app/userProgress/roadmap/${roadmapData._id}`,
+          `https://journeycode-api.onrender.com/userProgress/roadmap/${roadmapData._id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 

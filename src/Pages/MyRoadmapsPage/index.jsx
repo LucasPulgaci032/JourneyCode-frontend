@@ -16,7 +16,7 @@ export function MyRoadmapsPage() {
   console.log(decoded)
   useEffect(() =>{
    const findUserRoadmaps = async() => {
-   const user = await axios.get(`https://journeycode-api-production.up.railway.app/users/${decoded.id}`,{
+   const user = await axios.get(`https://journeycode-api.onrender.com/users/${decoded.id}`,{
       headers : {Authorization : `Bearer ${token}`}
     })
 
