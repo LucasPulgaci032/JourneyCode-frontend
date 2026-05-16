@@ -31,34 +31,42 @@ export default function StartComponents() {
   return (
     <div className={`flex flex-col mb-10 gap-10 text-center w-full p-6 space-y-4`}>
       <header
-        className="flex flex-col 
-            w-full 
-            rounded-md
-            bg-gradient-to-r from-blue-500 to-blue-900
-            min-w-[90%]
-            p-2
-           "
-            
+        className="flex flex-col w-full rounded-md
+        bg-gradient-to-r from-blue-500 to-blue-900 p-3 md:p-4"
       >
-        <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-300 `}>
+        <Title
+          className="text-stroke font-bold tracking-widest 
+          self-start text-2xl md:text-4xl p-4 md:p-6 text-blue-300"
+        >
           JourneyCode
-        </Title>  
+        </Title>
       </header>
-      <p className={`font-bold text-5xl text-stroke p-4 border-b
+        <p className={`font-bold text-5xl text-stroke p-4 border-b
         ${color ? "border-white/50" : "border-blue-400"} `}>
         {userName && `Olá, ${userName} !`}
       </p>
-
       <HowToUse>
       <LinesHTU>
           Escolha sua linguagem, siga o roadmap e Perceba sua evolução.
       </LinesHTU>
       </HowToUse>
-       <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-500 `}>
-          Roadmap para lógica de programação
-        </Title>  
+     <Title
+      className="text-stroke font-bold self-start 
+      text-2xl md:text-4xl 
+      p-4 md:p-6 
+      text-blue-500 
+      break-words"
+    >
+      Roadmap para lógica de programação
+    </Title>
       <InitialCard />
-      <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-500 `}>
+        <Title
+      className="text-stroke font-bold self-start 
+      text-2xl md:text-4xl 
+      p-4 md:p-6 
+      text-blue-500 
+      break-words"
+    >
           Roadmaps de linguagens de programação
         </Title>  
       <RoadmapCards />
