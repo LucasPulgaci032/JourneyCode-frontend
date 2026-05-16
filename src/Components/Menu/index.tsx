@@ -25,12 +25,14 @@ export function BtnMenu({ onClick} : BtnProps ){
   const {color} = useAppContext()
 
   return (
+  
     <button
       onClick={onClick}
       className={`flex justify-end  text-4xl p-4 right-2 mr-8 fixed  hover:text-5xl ${color ? "text-white" : "text-[--font-color-primary]"} ${locationButton.pathname == "/" ? "bottom-5" : "bottom-0"}`}
     >
       <CiMenuBurger />
     </button>
+  
   );
 }
 

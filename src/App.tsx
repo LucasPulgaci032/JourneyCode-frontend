@@ -1,4 +1,4 @@
-import "./App.css";
+
 import StartComponents from "./Pages/InitialPage/InitialPage.jsx";
 import { useEffect } from "react";
 import { BtnMenu, Menu } from "./Components/Menu/index.tsx";

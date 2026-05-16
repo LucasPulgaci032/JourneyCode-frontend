@@ -52,7 +52,7 @@ export function useAppContext() {
 export function AppProvider({ children }) {
    const [token,setToken] = useState(() => localStorage.getItem("token"));
 
-  const [color, setColor] = useState<boolean>(false);
+  const [color, setColor] = useState<boolean>(true);
 
   const [menu, setMenu] = useState(false);
   const [hiddenSection, setHiddenSection] = useState<number | null>(null);

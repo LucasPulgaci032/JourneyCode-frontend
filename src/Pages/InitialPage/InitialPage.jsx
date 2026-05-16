@@ -29,40 +29,38 @@ export default function StartComponents() {
 
 
   return (
-    <div className={`flex flex-col mb-10 gap-10 text-center w-full`}>
+    <div className={`flex flex-col mb-10 gap-10 text-center w-full p-6 space-y-4`}>
       <header
         className="flex flex-col 
-            h-1/2
-            gap-4 
-            bg-gradient-to-r from-blue-200 to-blue-900
-            
+            w-full 
             rounded-md
-            animate-glow
+            bg-gradient-to-r from-blue-500 to-blue-900
             min-w-[90%]
-            p-4
-            "
+            p-2
+           "
+            
       >
-        <Title className="text-[--font-color-title] font-[Orbitron] font-bold tracking-widest self-center text-3xl">
+        <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-300 `}>
           JourneyCode
         </Title>  
       </header>
-      <p className="font-bold text-5xl">{userName && `Olá, ${userName} !`}</p>
-      <Description justifyStart>
-        Aprenda, progrida e conquiste: roadmaps claros para cada linguagem
-        essencial.
-      </Description>
+      <p className={`font-bold text-5xl text-stroke p-4 border-b
+        ${color ? "border-white/50" : "border-blue-400"} `}>
+        {userName && `Olá, ${userName} !`}
+      </p>
 
       <HowToUse>
-        <LinesHTU>Escolha sua linguagem</LinesHTU>
-        <LinesHTU>Siga o roadmap</LinesHTU>
-        <LinesHTU>Perceba sua evolução.</LinesHTU>
+      <LinesHTU>
+          Escolha sua linguagem, siga o roadmap e Perceba sua evolução.
+      </LinesHTU>
       </HowToUse>
-      <section className={`w-full p-10 ${color ? "bg-blue-400" : "bg-blue-700"}`}>
+       <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-500 `}>
+          Roadmap para lógica de programação
+        </Title>  
       <InitialCard />
-      </section>
-      <Description>
-        Escolha a linguagem e siga seu roadmap de estudos passo a passo.
-      </Description>
+      <Title className={`text-stroke font-bold tracking-widest self-start text-4xl p-6 text-blue-500 `}>
+          Roadmaps de linguagens de programação
+        </Title>  
       <RoadmapCards />
     </div>
   );
