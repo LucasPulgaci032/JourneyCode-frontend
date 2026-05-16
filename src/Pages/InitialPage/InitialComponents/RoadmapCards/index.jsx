@@ -39,7 +39,10 @@ const languages = [
 export function RoadmapCards({ ...props }) {
   const {color} = useAppContext()
   return (
-    <section {...props} className="w-max flex flex-col gap-4 self-center">
+  <section
+  {...props}
+  className="w-full max-w-4xl mx-auto flex flex-col gap-4 px-4 md:px-6"
+>
       {languages.map((item) => (
         <Card key={item.id}>
           <h2 className="text-blue-300">{item.name}</h2>
